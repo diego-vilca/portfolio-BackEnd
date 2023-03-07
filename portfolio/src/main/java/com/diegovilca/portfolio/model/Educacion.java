@@ -1,8 +1,22 @@
 package com.diegovilca.portfolio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
-public class Educacion {
-    private Long id;
+@Getter @Setter
+@Entity
+public class Educacion implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long idEducacion;
     private String institucion;
     private String titulo;
     private String anioIngreso;
@@ -10,5 +24,27 @@ public class Educacion {
     private String urlImg;
     private String urlWeb;
     private String urlCertificado;
-       
+    
+    @ManyToOne
+    @JoinColumn(name="idPersona")
+    @JsonIgnore
+    private Persona unaPersona;
+
+    public Educacion() {
+    }
+
+    public Educacion(Long idEducacion, String institucion, String titulo, String anioIngreso, String anioEgreso, String urlImg, String urlWeb, String urlCertificado) {
+        this.idEducacion = idEducacion;
+        this.institucion = institucion;
+        this.titulo = titulo;
+        this.anioIngreso = anioIngreso;
+        this.anioEgreso = anioEgreso;
+        this.urlImg = urlImg;
+        this.urlWeb = urlWeb;
+        this.urlCertificado = urlCertificado;
+    }
+
+   
+    
+               
 }
