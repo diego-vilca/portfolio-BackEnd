@@ -38,15 +38,29 @@ public class ProyectoService implements IProyectoService{
     }
 
     @Override
-    public void editProyecto(Long idProyecto, Proyecto proyectoMod) {
-        //proyecto original
-        Proyecto proyectoOriginal = this.findProyecto(idProyecto);
-        //proyecto con modificaciones
-        proyectoOriginal = proyectoMod;
+    public void editProyecto(Long idProyecto, String nombre, String descripcion, String urlImg, String urlVideo, String urlRepositorio) {
         
+        Proyecto proyecto = this.findProyecto(idProyecto);
         
-        //guardo el proyecto modificado
-        this.saveProyecto(proyectoOriginal);
+        if (nombre != null) {
+            proyecto.setNombre(nombre);
+        }
+        if(descripcion != null){
+            proyecto.setDescripcion(descripcion);
+        }
+        if(urlImg != null){
+            proyecto.setUrlImg(urlImg);
+        }
+        if(urlVideo != null){
+            proyecto.setUrlVideo(urlVideo);
+        }
+        if(urlRepositorio != null){
+            proyecto.setUrlRepositorio(urlRepositorio);
+        }
+        
+        this.saveProyecto(proyecto);
     }
+
+    
     
 }

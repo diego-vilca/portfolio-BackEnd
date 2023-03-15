@@ -15,5 +15,5 @@ public interface IRedSocialService {
     
     public void editRed(RedSocial red);
     
-    public void editRed(Long idRed, RedSocial redMod);
+    public void editRed(Long idRed, String iconoFA, String color, String urlRed);
 }

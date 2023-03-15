@@ -15,5 +15,5 @@ public interface IHabilidadDigitalService {
     
     public void editHabilidad(HabilidadDigital habilidad);
     
-    public void editHabilidad(Long idHabilidad, HabilidadDigital habilidadMod);
+    public void editHabilidad(Long idHabilidad, String nombre, Integer porcentaje, String tipo);
 }

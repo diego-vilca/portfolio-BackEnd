@@ -15,6 +15,8 @@ public interface IExperienciaLaboralService {
     
     public void editTrabajo(ExperienciaLaboral trabajo);
     
-    public void editTrabajo(Long idTrabajo, ExperienciaLaboral trabajoMod);
+    public void editTrabajo(Long idTrabajo, String empresa,
+                            String funcion, String anioIngreso,
+                            String anioEgreso, String urlEmpresa);
 
 }

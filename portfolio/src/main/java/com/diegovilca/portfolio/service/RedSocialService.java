@@ -39,15 +39,23 @@ public class RedSocialService implements IRedSocialService{
     }
 
     @Override
-    public void editRed(Long idRed, RedSocial redMod) {
-        //red original
-        RedSocial redOriginal = this.findRed(idRed);
-        //red con modificaciones
-        redOriginal = redMod;
+    public void editRed(Long idRed, String iconoFA, String color, String urlRed) {
         
+        RedSocial red = this.findRed(idRed);
         
-        //guardo la red modificada
-        this.saveRed(redOriginal);
+        if (iconoFA != null) {
+            red.setIconoFA(iconoFA);
+        }
+        if(color != null){
+            red.setColor(color);
+        }
+        if(urlRed != null){
+            red.setUrlRed(urlRed);
+        }
+        
+        this.saveRed(red);
     }
+
+    
     
 }

@@ -38,15 +38,29 @@ public class ExperienciaLaboralService implements IExperienciaLaboralService{
     }
 
     @Override
-    public void editTrabajo(Long idTrabajo, ExperienciaLaboral trabajoMod) {
-        //trabajo original
-        ExperienciaLaboral trabajoOriginal = this.findTrabajo(idTrabajo);
-        //trabajo con modificaciones
-        trabajoOriginal = trabajoMod;
+    public void editTrabajo(Long idTrabajo, String empresa, String funcion, String anioIngreso, String anioEgreso, String urlEmpresa) {
         
+        ExperienciaLaboral experiencia = this.findTrabajo(idTrabajo);
         
-        //guardo el trabajo modificado
-        this.saveTrabajo(trabajoOriginal);
+        if (empresa != null) {
+            experiencia.setEmpresa(empresa);
+        }
+        if(funcion != null){
+            experiencia.setFuncion(funcion);
+        }
+        if(anioIngreso != null){
+            experiencia.setAnioIngreso(anioIngreso);
+        }
+        if(anioEgreso != null){
+            experiencia.setAnioEgreso(anioEgreso);
+        }
+        if(urlEmpresa != null){
+            experiencia.setUrlEmpresa(urlEmpresa);
+        }
+        
+        this.saveTrabajo(experiencia);
     }
+
+    
     
 }

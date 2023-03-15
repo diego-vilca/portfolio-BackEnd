@@ -15,5 +15,7 @@ public interface IProyectoService {
     
     public void editProyecto(Proyecto proyecto);
     
-    public void editProyecto(Long idProyecto, Proyecto proyectoMod);
+    public void editProyecto(Long idProyecto, String nombre,
+                            String descripcion, String urlImg,
+                            String urlVideo, String urlRepositorio);
 }

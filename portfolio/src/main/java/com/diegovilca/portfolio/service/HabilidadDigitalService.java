@@ -37,16 +37,24 @@ public class HabilidadDigitalService implements IHabilidadDigitalService{
         habilidadRepo.save(habilidad);
     }
 
+    
     @Override
-    public void editHabilidad(Long idHabilidad, HabilidadDigital habilidadMod) {
-        //habilidad original
-        HabilidadDigital habilidadOriginal = this.findHabilidad(idHabilidad);
-        //habilidad con modificaciones
-        habilidadOriginal = habilidadMod;
+    public void editHabilidad(Long idHabilidad, String nombre, Integer porcentaje, String tipo) {
         
+        HabilidadDigital habilidad = this.findHabilidad(idHabilidad);
         
-        //guardo la habilidad modificada
-        this.saveHabilidad(habilidadOriginal);
+        if(nombre != null){
+            habilidad.setNombre(nombre);
+        }
+        if(porcentaje != null){
+            habilidad.setPorcentaje(porcentaje);
+        }
+        if(tipo != null){
+            habilidad.setTipo(tipo);
+        }
+        
+        this.saveHabilidad(habilidad);
+        
     }
     
 }
