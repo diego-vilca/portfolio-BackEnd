@@ -31,5 +31,22 @@ public class HabilidadDigitalService implements IHabilidadDigitalService{
     public HabilidadDigital findHabilidad(Long id) {
         return habilidadRepo.findById(id).orElse(null);
     }
+
+    @Override
+    public void editHabilidad(HabilidadDigital habilidad) {
+        habilidadRepo.save(habilidad);
+    }
+
+    @Override
+    public void editHabilidad(Long idHabilidad, HabilidadDigital habilidadMod) {
+        //habilidad original
+        HabilidadDigital habilidadOriginal = this.findHabilidad(idHabilidad);
+        //habilidad con modificaciones
+        habilidadOriginal = habilidadMod;
+        
+        
+        //guardo la habilidad modificada
+        this.saveHabilidad(habilidadOriginal);
+    }
     
 }

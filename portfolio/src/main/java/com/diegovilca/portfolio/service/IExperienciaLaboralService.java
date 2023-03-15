@@ -12,4 +12,9 @@ public interface IExperienciaLaboralService {
     public void deleteTrabajo(Long id);
     
     public ExperienciaLaboral findTrabajo(Long id);
+    
+    public void editTrabajo(ExperienciaLaboral trabajo);
+    
+    public void editTrabajo(Long idTrabajo, ExperienciaLaboral trabajoMod);
+
 }

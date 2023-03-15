@@ -13,4 +13,10 @@ public interface IPersonaService {
     
     public Persona findPersona(Long id);
     
+    public void editPersona(Persona persona);
+    
+    public void editPersona(Long idPersona, String nombre,
+                            String apellido, String urlBannerImg,
+                            String urlPerfilImg, String acercaDe);
+    
 }

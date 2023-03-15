@@ -31,5 +31,22 @@ public class ExperienciaLaboralService implements IExperienciaLaboralService{
     public ExperienciaLaboral findTrabajo(Long id) {
         return experienciaRepo.findById(id).orElse(null);
     }
+
+    @Override
+    public void editTrabajo(ExperienciaLaboral trabajo) {
+        experienciaRepo.save(trabajo);
+    }
+
+    @Override
+    public void editTrabajo(Long idTrabajo, ExperienciaLaboral trabajoMod) {
+        //trabajo original
+        ExperienciaLaboral trabajoOriginal = this.findTrabajo(idTrabajo);
+        //trabajo con modificaciones
+        trabajoOriginal = trabajoMod;
+        
+        
+        //guardo el trabajo modificado
+        this.saveTrabajo(trabajoOriginal);
+    }
     
 }

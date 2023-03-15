@@ -1,6 +1,7 @@
 package com.diegovilca.portfolio.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,6 +40,11 @@ public class Persona implements Serializable {
     
 
     public Persona() {
+        this.redes = new ArrayList<>();
+        this.estudios = new ArrayList<>();
+        this.habilidades = new ArrayList<>();
+        this.trabajos = new ArrayList<>();
+        this.proyectos = new ArrayList<>();
     }
 
     public Persona(Long idPersona, String nombre, String apellido, String urlBannerImg, String urlPerfilImg, String acercaDe, List<RedSocial> redes, List<Educacion> estudios, List<HabilidadDigital> habilidades, List<ExperienciaLaboral> trabajos, List<Proyecto> proyectos) {

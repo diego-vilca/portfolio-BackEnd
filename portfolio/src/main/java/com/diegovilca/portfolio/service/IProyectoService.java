@@ -12,4 +12,8 @@ public interface IProyectoService {
     public void deleteProyecto(Long id);
     
     public Proyecto findProyecto(Long id);
+    
+    public void editProyecto(Proyecto proyecto);
+    
+    public void editProyecto(Long idProyecto, Proyecto proyectoMod);
 }

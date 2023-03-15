@@ -31,5 +31,22 @@ public class ProyectoService implements IProyectoService{
     public Proyecto findProyecto(Long id) {
         return proyectoRepo.findById(id).orElse(null);
     }
+
+    @Override
+    public void editProyecto(Proyecto proyecto) {
+        proyectoRepo.save(proyecto);
+    }
+
+    @Override
+    public void editProyecto(Long idProyecto, Proyecto proyectoMod) {
+        //proyecto original
+        Proyecto proyectoOriginal = this.findProyecto(idProyecto);
+        //proyecto con modificaciones
+        proyectoOriginal = proyectoMod;
+        
+        
+        //guardo el proyecto modificado
+        this.saveProyecto(proyectoOriginal);
+    }
     
 }

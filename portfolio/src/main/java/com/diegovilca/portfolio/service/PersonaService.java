@@ -31,5 +31,39 @@ public class PersonaService implements IPersonaService{
     public Persona findPersona(Long id) {
         return personaRepo.findById(id).orElse(null);
     }
+
+    @Override
+    public void editPersona(Persona persona){
+        personaRepo.save(persona);
+    }
+
+    @Override
+    public void editPersona(Long idPersona, String nombre, 
+                            String apellido, String urlBannerImg, 
+                            String urlPerfilImg, String acercaDe) {
+        
+        Persona persona = this.findPersona(idPersona);
+        
+        if (nombre != null) {
+            persona.setNombre(nombre);
+        }
+        if(apellido != null){
+            persona.setApellido(apellido);
+        }
+        if(urlBannerImg != null){
+            persona.setUrlBannerImg(urlBannerImg);
+        }
+        if(urlPerfilImg != null){
+            persona.setUrlPerfilImg(urlPerfilImg);
+        }
+        if(acercaDe != null){
+            persona.setAcercaDe(acercaDe);
+        }
+        
+        this.savePersona(persona);
+        
+    }
+    
+    
     
 }

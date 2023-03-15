@@ -12,4 +12,8 @@ public interface IRedSocialService {
     public void deleteRed(Long id);
     
     public RedSocial findRed(Long id);
+    
+    public void editRed(RedSocial red);
+    
+    public void editRed(Long idRed, RedSocial redMod);
 }

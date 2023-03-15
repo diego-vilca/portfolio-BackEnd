@@ -12,4 +12,8 @@ public interface IHabilidadDigitalService {
     public void deleteHabilidad(Long id);
     
     public HabilidadDigital findHabilidad(Long id);
+    
+    public void editHabilidad(HabilidadDigital habilidad);
+    
+    public void editHabilidad(Long idHabilidad, HabilidadDigital habilidadMod);
 }
