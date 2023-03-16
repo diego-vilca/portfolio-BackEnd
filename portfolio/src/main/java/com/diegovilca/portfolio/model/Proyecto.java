@@ -31,8 +31,8 @@ public class Proyecto implements Serializable {
     public Proyecto() {
     }
 
-    public Proyecto(Long idProyecto, String nombre, String descripcion, String urlImg, String urlVideo, String urlRepositorio) {
-        this.idProyecto = idProyecto;
+    public Proyecto(String nombre, String descripcion, String urlImg, String urlVideo, String urlRepositorio) {
+        //this.idProyecto = idProyecto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.urlImg = urlImg;

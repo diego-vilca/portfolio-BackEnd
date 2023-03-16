@@ -35,6 +35,12 @@ public class RedSocialController {
         return this.redService.getRedes();
     }
     
+    //BUSCAR 
+    @GetMapping("/{idRed}")
+    public RedSocial buscarRed(@PathVariable Long idRed){
+        return redService.findRed(idRed);
+    }
+    
     //BAJA
     @DeleteMapping ("/delete/{id}")
     public void borrarRed (@PathVariable Long id){

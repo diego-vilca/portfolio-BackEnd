@@ -35,6 +35,12 @@ public class EducacionController {
         return this.educacionService.getEstudios();
     }
     
+    //BUSCAR 
+    @GetMapping("/{idEstudio}")
+    public Educacion buscarEducacion(@PathVariable Long idEstudio){
+        return educacionService.findEstudio(idEstudio);
+    }
+    
     //BAJA
     @DeleteMapping ("/delete/{id}")
     public void borrarEducacion (@PathVariable Long id){

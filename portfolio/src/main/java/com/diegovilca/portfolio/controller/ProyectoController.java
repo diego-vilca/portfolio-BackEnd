@@ -35,6 +35,12 @@ public class ProyectoController {
         return this.proyectoService.getProyectos();
     }
     
+    //BUSCAR 
+    @GetMapping("/{idProyecto}")
+    public Proyecto buscarProyecto(@PathVariable Long idProyecto){
+        return proyectoService.findProyecto(idProyecto);
+    }
+    
     //BAJA
     @DeleteMapping ("/delete/{id}")
     public void borrarProyecto (@PathVariable Long id){

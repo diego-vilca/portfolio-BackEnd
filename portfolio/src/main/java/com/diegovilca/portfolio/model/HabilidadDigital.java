@@ -29,8 +29,8 @@ public class HabilidadDigital implements Serializable {
     public HabilidadDigital() {
     }
 
-    public HabilidadDigital(Long idHabilidad, String nombre, Integer porcentaje, String tipo) {
-        this.idHabilidad = idHabilidad;
+    public HabilidadDigital(String nombre, Integer porcentaje, String tipo) {
+        //this.idHabilidad = idHabilidad;
         this.nombre = nombre;
         this.porcentaje = porcentaje;
         this.tipo = tipo;

@@ -36,6 +36,12 @@ public class HabilidadDigitalController {
         return this.habilidadService.getHabilidades();
     }
     
+    //BUSCAR 
+    @GetMapping("/{idHabilidad}")
+    public HabilidadDigital buscarHabilidad(@PathVariable Long idHabilidad){
+        return habilidadService.findHabilidad(idHabilidad);
+    }
+    
     //BAJA
     @DeleteMapping ("/delete/{id}")
     public void borrarHabilidad (@PathVariable Long id){

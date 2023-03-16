@@ -47,8 +47,8 @@ public class Persona implements Serializable {
         this.proyectos = new ArrayList<>();
     }
 
-    public Persona(Long idPersona, String nombre, String apellido, String urlBannerImg, String urlPerfilImg, String acercaDe, List<RedSocial> redes, List<Educacion> estudios, List<HabilidadDigital> habilidades, List<ExperienciaLaboral> trabajos, List<Proyecto> proyectos) {
-        this.idPersona = idPersona;
+    public Persona(String nombre, String apellido, String urlBannerImg, String urlPerfilImg, String acercaDe, List<RedSocial> redes, List<Educacion> estudios, List<HabilidadDigital> habilidades, List<ExperienciaLaboral> trabajos, List<Proyecto> proyectos) {
+        //this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
         this.urlBannerImg = urlBannerImg;

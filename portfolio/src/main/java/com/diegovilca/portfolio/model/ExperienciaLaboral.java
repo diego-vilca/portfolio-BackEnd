@@ -31,8 +31,8 @@ public class ExperienciaLaboral implements Serializable {
     public ExperienciaLaboral() {
     }
 
-    public ExperienciaLaboral(Long idExperiencia, String empresa, String funcion, String anioIngreso, String anioEgreso, String urlEmpresa) {
-        this.idExperiencia = idExperiencia;
+    public ExperienciaLaboral(String empresa, String funcion, String anioIngreso, String anioEgreso, String urlEmpresa) {
+        //this.idExperiencia = idExperiencia;
         this.empresa = empresa;
         this.funcion = funcion;
         this.anioIngreso = anioIngreso;

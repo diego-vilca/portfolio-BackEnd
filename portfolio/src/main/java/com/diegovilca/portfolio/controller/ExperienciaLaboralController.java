@@ -35,6 +35,12 @@ public class ExperienciaLaboralController {
         return this.experienciaService.getTrabajos();
     }
     
+    //BUSCAR 
+    @GetMapping("/{idExperiencia}")
+    public ExperienciaLaboral buscarExperiencia(@PathVariable Long idExperiencia){
+        return experienciaService.findTrabajo(idExperiencia);
+    }
+    
     //BAJA
     @DeleteMapping ("/delete/{id}")
     public void borrarExperiencia (@PathVariable Long id){

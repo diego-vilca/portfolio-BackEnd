@@ -28,8 +28,8 @@ public class RedSocial implements Serializable {
     public RedSocial() {
     }
 
-    public RedSocial(Long idRed, String iconoFA, String color, String urlRed) {
-        this.idRed = idRed;
+    public RedSocial(String iconoFA, String color, String urlRed) {
+        //this.idRed = idRed;
         this.iconoFA = iconoFA;
         this.color = color;
         this.urlRed = urlRed;
