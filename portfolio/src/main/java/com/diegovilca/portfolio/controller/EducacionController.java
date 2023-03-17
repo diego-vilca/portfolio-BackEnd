@@ -1,9 +1,12 @@
 package com.diegovilca.portfolio.controller;
 
 import com.diegovilca.portfolio.model.Educacion;
+import com.diegovilca.portfolio.model.Persona;
 import com.diegovilca.portfolio.service.IEducacionService;
+import com.diegovilca.portfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,14 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("education")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class EducacionController {
     
     @Autowired
     private IEducacionService educacionService;
+    @Autowired
+    private IPersonaService personaService;
     
     //ALTA
     @PostMapping ("/create")
     public void agregarEducacion (@RequestBody Educacion estudio){
+        this.educacionService.saveEstudio(estudio);
+    }
+    
+    @PostMapping ("/create/{idPersona}")
+    public void agregarEducacion (@RequestBody Educacion estudio, @PathVariable Long idPersona){
+        Persona unaPersona = personaService.findPersona(idPersona);
+        unaPersona.addEducacion(estudio);
+        
         this.educacionService.saveEstudio(estudio);
     }
     
@@ -66,4 +80,6 @@ public class EducacionController {
         
         this.educacionService.editEstudio(estudioMod);
     }
+    
+    
 }

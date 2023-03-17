@@ -27,14 +27,13 @@ public class Educacion implements Serializable {
     
     @ManyToOne
     @JoinColumn(name="idPersona")
-    @JsonIgnore
+    @JsonIgnore//evita recursividad
     private Persona unaPersona;
 
     public Educacion() {
     }
 
     public Educacion(String institucion, String titulo, String anioIngreso, String anioEgreso, String urlImg, String urlWeb, String urlCertificado) {
-        //this.idEducacion = idEducacion;
         this.institucion = institucion;
         this.titulo = titulo;
         this.anioIngreso = anioIngreso;

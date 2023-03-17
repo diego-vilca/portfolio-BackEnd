@@ -25,14 +25,13 @@ public class Proyecto implements Serializable {
     
     @ManyToOne
     @JoinColumn(name="idPersona")
-    @JsonIgnore
+    @JsonIgnore//evita recursividad
     private Persona unaPersona;
 
     public Proyecto() {
     }
 
     public Proyecto(String nombre, String descripcion, String urlImg, String urlVideo, String urlRepositorio) {
-        //this.idProyecto = idProyecto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.urlImg = urlImg;

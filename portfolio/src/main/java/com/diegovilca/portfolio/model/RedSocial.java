@@ -22,14 +22,13 @@ public class RedSocial implements Serializable {
     private String urlRed;
     @ManyToOne
     @JoinColumn(name="idPersona")  
-    @JsonIgnore
+    @JsonIgnore//evita recursividad
     private Persona unaPersona;
 
     public RedSocial() {
     }
 
     public RedSocial(String iconoFA, String color, String urlRed) {
-        //this.idRed = idRed;
         this.iconoFA = iconoFA;
         this.color = color;
         this.urlRed = urlRed;

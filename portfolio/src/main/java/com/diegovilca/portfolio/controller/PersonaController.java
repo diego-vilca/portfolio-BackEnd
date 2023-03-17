@@ -4,6 +4,7 @@ import com.diegovilca.portfolio.model.Persona;
 import com.diegovilca.portfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("person")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class PersonaController {
     
     @Autowired
@@ -33,6 +35,12 @@ public class PersonaController {
     @ResponseBody
     public List<Persona> verPersonas(){
         return this.personaService.getPersonas();
+    }
+    
+    //BUSCAR 
+    @GetMapping("/{idPersona}")
+    public Persona buscarPersona(@PathVariable Long idPersona){
+        return personaService.findPersona(idPersona);
     }
     
     //BAJA

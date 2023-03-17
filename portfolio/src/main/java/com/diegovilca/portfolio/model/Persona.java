@@ -33,11 +33,13 @@ public class Persona implements Serializable {
     private List<HabilidadDigital> habilidades;
     
     @OneToMany(mappedBy="unaPersona")
-    private List<ExperienciaLaboral> trabajos;   
+    private List<ExperienciaLaboral> trabajos;     
     
     @OneToMany(mappedBy="unaPersona")
     private List<Proyecto> proyectos;
     
+    
+    //CONSTRUCTOR
 
     public Persona() {
         this.redes = new ArrayList<>();
@@ -48,7 +50,6 @@ public class Persona implements Serializable {
     }
 
     public Persona(String nombre, String apellido, String urlBannerImg, String urlPerfilImg, String acercaDe, List<RedSocial> redes, List<Educacion> estudios, List<HabilidadDigital> habilidades, List<ExperienciaLaboral> trabajos, List<Proyecto> proyectos) {
-        //this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
         this.urlBannerImg = urlBannerImg;
@@ -60,7 +61,30 @@ public class Persona implements Serializable {
         this.trabajos = trabajos;
         this.proyectos = proyectos;
     }
+    
+    
+       
+    //METODOS
 
+    public void addExperiencia(ExperienciaLaboral experiencia){
+        experiencia.setUnaPersona(this);
+    }
+    
+    public void addEducacion(Educacion estudio){
+        estudio.setUnaPersona(this);
+    }
+    
+    public void addProyecto(Proyecto proyecto){
+        proyecto.setUnaPersona(this);
+    }
+    
+    public void addRed(RedSocial red){
+        red.setUnaPersona(this);
+    }
+    
+    public void addHabilidad(HabilidadDigital habilidad){
+        habilidad.setUnaPersona(this);
+    }
     
     
     

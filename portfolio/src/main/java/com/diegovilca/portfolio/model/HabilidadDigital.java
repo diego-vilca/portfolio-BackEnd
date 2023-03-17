@@ -23,14 +23,13 @@ public class HabilidadDigital implements Serializable {
     
     @ManyToOne
     @JoinColumn(name="idPersona")
-    @JsonIgnore
+    @JsonIgnore//evita recursividad
     private Persona unaPersona;
 
     public HabilidadDigital() {
     }
 
     public HabilidadDigital(String nombre, Integer porcentaje, String tipo) {
-        //this.idHabilidad = idHabilidad;
         this.nombre = nombre;
         this.porcentaje = porcentaje;
         this.tipo = tipo;

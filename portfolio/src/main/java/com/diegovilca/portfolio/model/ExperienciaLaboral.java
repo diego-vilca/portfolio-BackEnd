@@ -25,20 +25,20 @@ public class ExperienciaLaboral implements Serializable {
     
     @ManyToOne
     @JoinColumn(name="idPersona")
-    @JsonIgnore
+    @JsonIgnore//evita recursividad
     private Persona unaPersona;
 
     public ExperienciaLaboral() {
     }
 
     public ExperienciaLaboral(String empresa, String funcion, String anioIngreso, String anioEgreso, String urlEmpresa) {
-        //this.idExperiencia = idExperiencia;
         this.empresa = empresa;
         this.funcion = funcion;
         this.anioIngreso = anioIngreso;
         this.anioEgreso = anioEgreso;
         this.urlEmpresa = urlEmpresa;
     }
-
+    
+    
         
 }

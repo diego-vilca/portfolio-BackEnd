@@ -1,9 +1,12 @@
 package com.diegovilca.portfolio.controller;
 
+import com.diegovilca.portfolio.model.Persona;
 import com.diegovilca.portfolio.model.RedSocial;
+import com.diegovilca.portfolio.service.IPersonaService;
 import com.diegovilca.portfolio.service.IRedSocialService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,14 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("social")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class RedSocialController {
     
     @Autowired
     private IRedSocialService redService;
+    @Autowired
+    private IPersonaService personaService;
     
     //ALTA
     @PostMapping ("/create")
     public void agregarRed (@RequestBody RedSocial red){
+        this.redService.saveRed(red);
+    }
+    
+    @PostMapping ("/create/{idPersona}")
+    public void agregarRed (@RequestBody RedSocial red, @PathVariable Long idPersona){
+        Persona unaPersona = personaService.findPersona(idPersona);
+        unaPersona.addRed(red);
+        
         this.redService.saveRed(red);
     }
     
@@ -62,4 +76,5 @@ public class RedSocialController {
         
         this.redService.editRed(redMod);
     }
+        
 }
