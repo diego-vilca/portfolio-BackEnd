@@ -4,6 +4,7 @@ import com.diegovilca.portfolio.model.Persona;
 import com.diegovilca.portfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class PersonaController {
     private IPersonaService personaService;
     
     //ALTA
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/create")
     public void agregarPersona (@RequestBody Persona persona){
         this.personaService.savePersona(persona);
@@ -38,18 +40,21 @@ public class PersonaController {
     }
     
     //BUSCAR 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{idPersona}")
     public Persona buscarPersona(@PathVariable Long idPersona){
         return personaService.findPersona(idPersona);
     }
     
     //BAJA
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
     public void borrarPersona (@PathVariable Long id){
         this.personaService.deletePersona(id);
     }
     
     //EDITAR
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{idPersona}")
     public void editarPersona(@PathVariable Long idPersona,
             @RequestParam( required = false, name = "nombre") String nombre,
@@ -61,7 +66,8 @@ public class PersonaController {
         personaService.editPersona(idPersona, nombre, apellido, urlBannerImg, urlPerfilImg, acercaDe);
     }
     
-     @PutMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/update")
     public void editarPersona( @RequestBody Persona personaMod){
         
         this.personaService.editPersona(personaMod);
