@@ -6,6 +6,7 @@ import com.diegovilca.portfolio.service.IEducacionService;
 import com.diegovilca.portfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,12 @@ public class EducacionController {
     private IPersonaService personaService;
     
     //ALTA
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/create")
     public void agregarEducacion (@RequestBody Educacion estudio){
         this.educacionService.saveEstudio(estudio);
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/create/{idPersona}")
     public void agregarEducacion (@RequestBody Educacion estudio, @PathVariable Long idPersona){
         Persona unaPersona = personaService.findPersona(idPersona);
@@ -50,18 +52,21 @@ public class EducacionController {
     }
     
     //BUSCAR 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{idEstudio}")
     public Educacion buscarEducacion(@PathVariable Long idEstudio){
         return educacionService.findEstudio(idEstudio);
     }
     
     //BAJA
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
     public void borrarEducacion (@PathVariable Long id){
         this.educacionService.deleteEstudio(id);
     }
     
     //EDITAR
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{idEstudio}")
     public void editarEducacion(@PathVariable Long idEstudio,
             @RequestParam( required = false, name = "institucion") String institucion,
@@ -75,7 +80,8 @@ public class EducacionController {
         educacionService.editEstudio(idEstudio, institucion, titulo, anioIngreso, anioEgreso, urlImg, urlWeb, urlCertificado);
     }
     
-     @PutMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/update")
     public void editarEducacion( @RequestBody Educacion estudioMod){
         
         this.educacionService.editEstudio(estudioMod);

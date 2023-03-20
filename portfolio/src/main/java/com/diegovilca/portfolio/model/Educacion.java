@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 public class Educacion implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEducacion;
     private String institucion;
     private String titulo;

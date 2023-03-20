@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 public class RedSocial implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRed;
     private String iconoFA;
     private String color;

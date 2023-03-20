@@ -6,6 +6,7 @@ import com.diegovilca.portfolio.service.IHabilidadDigitalService;
 import com.diegovilca.portfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,11 +31,13 @@ public class HabilidadDigitalController {
     private IPersonaService personaService;
     
     //ALTA
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/create")
     public void agregarHabilidad (@RequestBody HabilidadDigital habilidad){
         this.habilidadService.saveHabilidad(habilidad);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/create/{idPersona}")
     public void agregarHabilidad (@RequestBody HabilidadDigital habilidad, @PathVariable Long idPersona){
         Persona unaPersona = personaService.findPersona(idPersona);
@@ -51,18 +54,21 @@ public class HabilidadDigitalController {
     }
     
     //BUSCAR 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{idHabilidad}")
     public HabilidadDigital buscarHabilidad(@PathVariable Long idHabilidad){
         return habilidadService.findHabilidad(idHabilidad);
     }
     
     //BAJA
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
     public void borrarHabilidad (@PathVariable Long id){
         this.habilidadService.deleteHabilidad(id);
     }
     
     //EDITAR
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{idHabilidad}")
     public void editarHabilidad(@PathVariable Long idHabilidad,
             @RequestParam( required = false, name = "nombre") String nombre,
@@ -72,7 +78,8 @@ public class HabilidadDigitalController {
         this.habilidadService.editHabilidad(idHabilidad, nombre, porcentaje, tipo);
     }
     
-     @PutMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/update")
     public void editarHabilidad( @RequestBody HabilidadDigital habilidadMod){
         
         this.habilidadService.editHabilidad(habilidadMod);

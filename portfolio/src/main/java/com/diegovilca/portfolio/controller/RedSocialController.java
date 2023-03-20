@@ -6,6 +6,7 @@ import com.diegovilca.portfolio.service.IPersonaService;
 import com.diegovilca.portfolio.service.IRedSocialService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,13 @@ public class RedSocialController {
     private IPersonaService personaService;
     
     //ALTA
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/create")
     public void agregarRed (@RequestBody RedSocial red){
         this.redService.saveRed(red);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/create/{idPersona}")
     public void agregarRed (@RequestBody RedSocial red, @PathVariable Long idPersona){
         Persona unaPersona = personaService.findPersona(idPersona);
@@ -50,18 +53,21 @@ public class RedSocialController {
     }
     
     //BUSCAR 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{idRed}")
     public RedSocial buscarRed(@PathVariable Long idRed){
         return redService.findRed(idRed);
     }
     
     //BAJA
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
     public void borrarRed (@PathVariable Long id){
         this.redService.deleteRed(id);
     }
     
     //EDITAR
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{idRed}")
     public void editarRed(@PathVariable Long idRed,
             @RequestParam( required = false, name = "iconoFA") String iconoFA,
@@ -71,7 +77,8 @@ public class RedSocialController {
         redService.editRed(idRed, iconoFA, color, urlRed);
     }
     
-     @PutMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/update")
     public void editarRed( @RequestBody RedSocial redMod){
         
         this.redService.editRed(redMod);

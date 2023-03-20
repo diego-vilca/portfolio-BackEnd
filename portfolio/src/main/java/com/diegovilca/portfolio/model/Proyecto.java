@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 public class Proyecto implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProyecto;
     private String nombre;
     private String descripcion;

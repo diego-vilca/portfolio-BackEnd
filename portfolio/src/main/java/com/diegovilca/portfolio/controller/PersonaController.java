@@ -40,9 +40,8 @@ public class PersonaController {
     }
     
     //BUSCAR 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{idPersona}")
-    public Persona buscarPersona(@PathVariable Long idPersona){
+    public Persona BuscarPersona(@PathVariable Long idPersona){
         return personaService.findPersona(idPersona);
     }
     

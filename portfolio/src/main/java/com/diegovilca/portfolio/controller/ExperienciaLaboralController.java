@@ -6,6 +6,7 @@ import com.diegovilca.portfolio.service.IExperienciaLaboralService;
 import com.diegovilca.portfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,12 @@ public class ExperienciaLaboralController {
     private IPersonaService personaService;
     
     //ALTA
-    @PostMapping ("/create/")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping ("/create")
     public void agregarExperiencia (@RequestBody ExperienciaLaboral experiencia){
         this.experienciaService.saveTrabajo(experiencia);
     }
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/create/{idPersona}")
     public void agregarExperiencia (@RequestBody ExperienciaLaboral experiencia, @PathVariable Long idPersona){
         Persona unaPersona = personaService.findPersona(idPersona);
@@ -50,18 +52,21 @@ public class ExperienciaLaboralController {
     }
     
     //BUSCAR 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{idExperiencia}")
     public ExperienciaLaboral buscarExperiencia(@PathVariable Long idExperiencia){
         return experienciaService.findTrabajo(idExperiencia);
     }
     
     //BAJA
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
     public void borrarExperiencia (@PathVariable Long id){
         this.experienciaService.deleteTrabajo(id);
     }
     
     //EDITAR
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{idExperiencia}")
     public void editarExperiencia(@PathVariable Long idExperiencia,
             @RequestParam( required = false, name = "empresa") String empresa,
@@ -73,7 +78,8 @@ public class ExperienciaLaboralController {
         experienciaService.editTrabajo(idExperiencia, empresa, funcion, anioIngreso, anioEgreso, urlEmpresa);
     }
     
-     @PutMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/update")
     public void editarExperiencia( @RequestBody ExperienciaLaboral experienciaMod){
         
         this.experienciaService.editTrabajo(experienciaMod);

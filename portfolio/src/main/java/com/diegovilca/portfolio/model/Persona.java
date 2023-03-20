@@ -3,6 +3,7 @@ package com.diegovilca.portfolio.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,12 +16,13 @@ import lombok.Setter;
 @Entity
 public class Persona implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPersona;
     private String nombre;
     private String apellido;
     private String urlBannerImg;
-    private String urlPerfilImg;
+    private String urlPerfilImg; 
+    @Column(columnDefinition= "TEXT")
     private String acercaDe;
     
     @OneToMany(mappedBy="unaPersona")

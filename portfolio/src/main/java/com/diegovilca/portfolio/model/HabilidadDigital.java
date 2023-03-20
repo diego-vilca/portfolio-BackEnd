@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 public class HabilidadDigital implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHabilidad;
     private String nombre;
     private Integer porcentaje;

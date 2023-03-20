@@ -6,6 +6,7 @@ import com.diegovilca.portfolio.service.IPersonaService;
 import com.diegovilca.portfolio.service.IProyectoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +30,14 @@ public class ProyectoController {
     private IPersonaService personaService;
     
     //ALTA
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/create")
     public void agregarProyecto (@RequestBody Proyecto proyecto){
         this.proyectoService.saveProyecto(proyecto);
     }
     
-     @PostMapping ("/create/{idPersona}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping ("/create/{idPersona}")
     public void agregarProyecto (@RequestBody Proyecto proyecto, @PathVariable Long idPersona){
         Persona unaPersona = personaService.findPersona(idPersona);
         unaPersona.addProyecto(proyecto);
@@ -50,18 +53,21 @@ public class ProyectoController {
     }
     
     //BUSCAR 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{idProyecto}")
     public Proyecto buscarProyecto(@PathVariable Long idProyecto){
         return proyectoService.findProyecto(idProyecto);
     }
     
     //BAJA
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/delete/{id}")
     public void borrarProyecto (@PathVariable Long id){
         this.proyectoService.deleteProyecto(id);
     }
     
     //EDITAR
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{idProyecto}")
     public void editarProyecto(@PathVariable Long idProyecto,
             @RequestParam( required = false, name = "nombre") String nombre,
@@ -73,7 +79,8 @@ public class ProyectoController {
         proyectoService.editProyecto(idProyecto, nombre, descripcion, urlImg, urlVideo, urlRepositorio);
     }
     
-     @PutMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/update")
     public void editarProyecto( @RequestBody Proyecto proyectoMod){
         
         this.proyectoService.editProyecto(proyectoMod);
